@@ -24,4 +24,4 @@ The day after I wanted to keep coding the kata and I finished with a solution th
 ## Author
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
 
-[Others During the Mob](https://github.com/SoftwareCraftersMurcia/Mars-rover-kata-en-Mob-programming-java/graphs/contributors) 
+[Others During the Mob](https://github.com/luisrovirosa/Mars-rover-kata-en-Mob-programming-java/graphs/contributors) 
