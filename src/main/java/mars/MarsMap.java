@@ -8,7 +8,7 @@ public class MarsMap {
     public static final int MARS_SIZE = 10;
     private RoverSituation roverSituation;
     private final List<Position> positionOfObstacles;
-    private boolean moved;
+    private boolean isThereAnObstacle;
 
     public MarsMap(RoverSituation roverSituation, List<Position> positionOfObstacles) {
         this.roverSituation = roverSituation;
@@ -17,20 +17,24 @@ public class MarsMap {
 
     public void execute(MarsCommand command) {
         RoverSituation desiredRoverSituation = command.execute(roverSituation);
+        moveRoverTo(situationWithSphericalWorld(desiredRoverSituation));
+    }
+
+    private RoverSituation situationWithSphericalWorld(RoverSituation desiredRoverSituation) {
         Position position = positionWithSphericalWorld(desiredRoverSituation.getPosition());
-        moveRoverTo(desiredRoverSituation.withPosition(position));
+        return desiredRoverSituation.withPosition(position);
     }
 
     public void moveRoverTo(RoverSituation roverSituation) {
-        moved = !isThereAnObstacle(roverSituation);
-        if (moved){
+        isThereAnObstacle = isThereAnObstacle(roverSituation);
+        if (!isThereAnObstacle){
             this.roverSituation = roverSituation;
         }
     }
 
     public String getRoverSituation() {
         String representation = roverSituation.toString();
-        return moved ? representation : "O:" + representation;
+        return isThereAnObstacle ? "O:" + representation : representation;
     }
 
     private Position positionWithSphericalWorld(Position expectedPosition) {
